@@ -8,9 +8,7 @@ const saveUser = z.object({
   password: z.string().min(4),
   confirmPassword: z.string().min(4),
   phone: z.string(),
-  role: z.object({
-    id: z.number()
-  })
+  roleId: z.string()
 })
 
 class UserInsertController {
@@ -21,11 +19,11 @@ class UserInsertController {
       password,
       confirmPassword,
       phone,
-      role
+      roleId
     } = saveUser.parse(request.body)
 
     const userInsertService = new UserInsertService()
-    const { status, data } = await userInsertService.execute({ name, email, password, confirmPassword, phone, role })
+    const { status, data } = await userInsertService.execute({ name, email, password, confirmPassword, phone, roleId })
 
     reply
       .code(status)

@@ -5,6 +5,7 @@ import multipart from '@fastify/multipart'
 import jwt from '@fastify/jwt'
 import path from 'path'
 import bcrypt from 'fastify-bcrypt'
+import { roleRoutes } from './routes/role'
 import { userRoutes } from './routes/user'
 
 const __dirname = path.resolve(path.dirname(''))
@@ -17,7 +18,8 @@ app.register(fastifyStatic, {
 app.register(cors)
 app.register(multipart)
 app.register(bcrypt, { saltWorkFactor: 8 })
-app.register(userRoutes)
+app.register(roleRoutes, { prefix: '/api/v1' })
+app.register(userRoutes, { prefix: '/api/v1' })
 app.register(jwt, { secret: '69a94ca2a8c48146d2d40a090db1d196' })
 
 app.listen({ port: 3333 })

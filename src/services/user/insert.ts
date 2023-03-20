@@ -31,6 +31,11 @@ class UserInsertService {
         roleId,
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true
       }
     })
     return { status: 201, data: newUser }

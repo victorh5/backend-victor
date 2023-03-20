@@ -32,7 +32,7 @@ export async function userSeed () {
             number: '(67) 98159-6482'
           }
         },
-        profile_image: 'https://instagram.fcgr8-1.fna.fbcdn.net/v/t51.2885-19/316923514_201302118938796_954919540150157949_n.jpg?stp=dst-jpg_s150x150&_nc_ht=instagram.fcgr8-1.fna.fbcdn.net&_nc_cat=100&_nc_ohc=p6QsT1GnvK4AX9aKUbt&edm=ACWDqb8BAAAA&ccb=7-5&oh=00_AfD1IVso1fEtLY5I_5QG5oQGay5NNKtllfeNzGaVo8muHw&oe=63CCD993&_nc_sid=1527a3',
+        profile_image: 'https://media.licdn.com/dms/image/C4E03AQHm_uwAoZK03Q/profile-displayphoto-shrink_200_200/0/1616996718950?e=1684972800&v=beta&t=vYRDnFlv4VOffM_q0m97xhELQTq-qM-vKYjMNc1q84A',
         createdAt: new Date('2023-01-19T03:00:00.000z')
       }
     }),

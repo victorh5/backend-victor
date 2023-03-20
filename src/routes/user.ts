@@ -10,7 +10,6 @@ import {
   UserShowController,
   UserRemoveController
 } from '../controllers/user'
-import {UserAuthenticateService} from '../services/user'
 
 const userInsertController = new UserInsertController()
 const userInsertProfileImage = new UserInsertProfileImageController()
@@ -32,17 +31,6 @@ export async function userRoutes(app: FastifyInstance) {
         request.user_id = user.sub
       } catch (error: any) {
         reply.code(401).send(error)
-      }
-    })
-    .decorate('asyncVerifyEmailAndPassword', async (request: FastifyRequest<{Body: {email: string, password: string}}>, reply: FastifyReply) => {
-      try {
-        if (!request.body) throw new Error('E-mail e senha são obrigatórios')
-        const { email, password } = request.body
-        const userAuthService = new UserAuthenticateService()
-        const user = await userAuthService.execute({ email, password })
-        request.user = user
-      } catch (error: any) {
-        reply.code(400).send(error)
       }
     })
     .register(FastifyAuth)
