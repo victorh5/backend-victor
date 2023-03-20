@@ -1,13 +1,13 @@
 import { prisma } from '../../lib/prisma'
 
-class UserShowService {
+class RoleShowService {
   async execute(id: string) {
-    const user = await prisma.user.findUnique({
+    const role = await prisma.role.findUnique({
       where: { id }
     })
-    if (!user) return { status: 400, data: 'Usuário não encontrado na nossa base!'}
-    return { status: 200, data: user }
+    if (!role) return { status: 400, data: 'Tipo de usuário não encontrado na nossa base!'}
+    return { status: 200, data: role }
   }
 }
 
-export { UserShowService }
+export { RoleShowService }

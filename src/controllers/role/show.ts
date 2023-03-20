@@ -1,13 +1,13 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { UserShowService } from '../../services/user'
+import { RoleShowService } from '../../services/role'
 
-class UserShowController {
+class RoleShowController {
   async handle (request: FastifyRequest<{Params: { id: string }}>, reply: FastifyReply) {
     const { id } = request.params
-    const userShowService = new UserShowService()
-    const { status, data } = await userShowService.execute(id)
+    const roleShowService = new RoleShowService()
+    const { status, data } = await roleShowService.execute(id)
     return reply.code(status).send({ status, data })
   }
 }
 
-export { UserShowController }
+export { RoleShowController }
