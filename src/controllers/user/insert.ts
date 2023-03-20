@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { UserInsertService } from '../../services/user/insert'
+import { UserInsertService } from '../../services/user'
 
 const saveUser = z.object({
   name: z.string(),
