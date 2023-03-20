@@ -1,34 +1,19 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { UserUpdateService } from '../../services/user'
+import { RoleUpdateService } from '../../services/role'
 
 
-const saveUser = z.object({
-  name: z.string().optional(),
-  email: z.string().email().optional(),
-  phone: z.string().optional(),
-  address: z.object({
-    cep: z.string(),
-    number: z.number(),
-    street: z.string(),
-    state: z.string(),
-    city: z.string(),
-    complement: z.string().optional()
-  }).optional()
+const updateRole = z.object({
+  type: z.string(),
 })
 
-class UserUpdateController {
+class RoleUpdateController {
   async handle(request: FastifyRequest<{Params: {id: string}}>, reply: FastifyReply) {
     const { id } = request.params
-    const {
-      name,
-      email,
-      phone,
-      address
-    } = saveUser.parse(request.body)
+    const { type } = updateRole.parse(request.body)
 
-    const userUpdateService = new UserUpdateService()
-    const {status, data} = await userUpdateService.execute({ id, name, email, phone, address })
+    const roleUpdateService = new RoleUpdateService()
+    const {status, data} = await roleUpdateService.execute({ id, type })
 
     reply
       .code(status)
@@ -36,4 +21,4 @@ class UserUpdateController {
   }
 }
 
-export { UserUpdateController }
+export { RoleUpdateController }

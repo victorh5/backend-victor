@@ -4,7 +4,6 @@ import { RoleInsertService } from '../../services/role'
 
 const insertRole = z.object({
   type: z.string(),
-
 })
 
 class RoleInsertController {

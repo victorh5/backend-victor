@@ -5,6 +5,7 @@ interface IUserUpdate {
   name?: string
   email?: string
   phone?: string
+  roleId?: string
   address?: {
     cep: string
     number: number
@@ -17,39 +18,21 @@ interface IUserUpdate {
 
 class UserUpdateService {
   async execute ({id, ...data}: IUserUpdate) {
-    const userUpdated = await prisma.user.update({
+    await prisma.user.update({
       where: { id },
       data: {
         name: data.name,
         email: data.email,
+        roleId: data.roleId,
         phone: {
           update: { number: data.phone }
         },
         address: {
           update: data.address
         }
-      },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        profile_image: true,
-        phone: {
-          select: { number: true }
-        },
-        address: {
-          select: {
-            cep: true,
-            street: true,
-            number: true,
-            city: true,
-            state: true,
-            complement: true
-          }
-        }
       }
     })
-    return { status: 200, data: userUpdated }
+    return { status: 204, data: 'Informações do usuário atualizadas com sucesso!' }
   }
 }
 

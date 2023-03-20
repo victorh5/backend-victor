@@ -7,11 +7,11 @@ interface IUserInsert {
   password: string
   confirmPassword: string
   phone: string
-  role: { id: number }
+  roleId: string
 }
 
 class UserInsertService {
-  async execute ({ name, email, password, confirmPassword, phone, role }: IUserInsert) {
+  async execute ({ name, email, password, confirmPassword, phone, roleId }: IUserInsert) {
     if (password !== confirmPassword) return { status: 400, data: 'Senhas não coincidem!'}
     const emailAlreadyRegistered = await prisma.user.findFirst({ where: { email } })
     if (emailAlreadyRegistered) return { status: 400, data: 'E-mail já cadastrado no sistema! Tente outro :)' }
@@ -28,7 +28,7 @@ class UserInsertService {
             number: phone
           }
         },
-        roleId: role.id,
+        roleId,
         createdAt: new Date(),
         updatedAt: new Date()
       }
