@@ -1,21 +1,16 @@
 import { prisma } from '../../lib/prisma'
 
-class UserListService {
+class RoleListService {
   async execute () {
-    const users = await prisma.user.findMany({
-      where: { roleId: 2 },
+    const roles = await prisma.role.findMany({
       select: {
         id: true,
-        name: true,
-        email: true,
-        phone: {
-          select: { number: true }
-        },
+        type: true,
         createdAt: true
       }
     })
-    return { status: 200, data: users }
+    return { status: 200, data: roles }
   }
 }
 
-export { UserListService }
+export { RoleListService }

@@ -1,14 +1,14 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { UserListService } from '../../services/user'
+import { RoleListService } from '../../services/role'
 
-class UserListController {
+class RoleListController {
   async handle(request: FastifyRequest, reply: FastifyReply) {
-    const userListService = new UserListService()
-    const users = await userListService.execute()
+    const roleListService = new RoleListService()
+    const {status, data} = await roleListService.execute()
     reply
-      .code(200)
-      .send(users)
+      .code(status)
+      .send({ status, data })
   }
 }
 
-export { UserListController }
+export { RoleListController }
