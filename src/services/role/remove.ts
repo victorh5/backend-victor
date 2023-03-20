@@ -1,10 +1,10 @@
 import { prisma } from '../../lib/prisma'
 
-class UserRemoveService {
+class RoleRemoveService {
   async execute (id: string) {
-    await prisma.user.delete({ where: { id } })
+    await prisma.role.delete({ where: { id } })
     return {status: 204, data: 'Usuário removido com sucesso!'}
   }
 }
 
-export { UserRemoveService }
+export { RoleRemoveService }

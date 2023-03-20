@@ -1,16 +1,16 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { UserRemoveService } from '../../services/user'
+import { RoleRemoveService } from '../../services/role'
 
 
-class UserRemoveController {
+class RoleRemoveController {
   async handle(request: FastifyRequest<{Params: { id: string }}>, reply: FastifyReply) {
     const { id } = request.params
-    const userRemoveService = new UserRemoveService()
-    const { status, data } = await userRemoveService.execute(id)
+    const roleRemoveService = new RoleRemoveService()
+    const { status, data } = await roleRemoveService.execute(id)
     reply
       .code(status)
       .send({ status, data })
   }
 }
 
-export { UserRemoveController }
+export { RoleRemoveController }
